@@ -1,7 +1,8 @@
-package com.minimarket
+package com.minimarket.activity
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.minimarket.R
 
 class MainActivity : AppCompatActivity() {
 
