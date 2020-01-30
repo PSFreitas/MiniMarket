@@ -1,7 +1,9 @@
 package com.minimarket.model
 
+import com.google.gson.annotations.SerializedName
+
 data class Size(
-    val isAvailable: Boolean = false,
-    val size: String = "",
-    val sku: String = ""
+    @SerializedName("available") val isAvailable: Boolean = false,
+    @SerializedName("size") val size: String = "",
+    @SerializedName("sku") val sku: String = ""
 )
