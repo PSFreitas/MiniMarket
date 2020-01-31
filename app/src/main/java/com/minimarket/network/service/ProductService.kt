@@ -11,13 +11,14 @@ interface ProductService {
     fun getAllProducts(): Call<ProductResponse>
 
     companion object Factory {
-        private const val BASE_URL = "www.mocky.io/v2/"
+        private const val BASE_URL = "http:www.mocky.io/v2/"
 
-        private fun create() {
-            Retrofit.Builder()
-                .baseUrl(BASE_URL)
+        fun create(): ProductService {
+            return Retrofit.Builder()
                 .addConverterFactory(GsonConverterFactory.create())
+                .baseUrl(BASE_URL)
                 .build()
+                .create(ProductService::class.java)
         }
 
     }
