@@ -1,5 +1,6 @@
-package com.minimarket.network.service
+package com.example.data.network.service
 
+import com.example.data.network.response.ProductResponse
 import retrofit2.Call
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
