@@ -15,8 +15,8 @@ class ProductListMapper(
                 ProductEntity(
                     name = productNetwork.name,
                     style = productNetwork.style,
-                    regularPrice = BigDecimal(productNetwork.regularPrice),
-                    actualPrice = BigDecimal(productNetwork.actualPrice),
+                    regularPrice = BigDecimal(formatPrice(productNetwork.regularPrice)),
+                    actualPrice = BigDecimal(formatPrice(productNetwork.actualPrice)),
                     isOnSale = productNetwork.isOnSale,
                     image = productNetwork.image,
                     color = productNetwork.color,
@@ -27,6 +27,12 @@ class ProductListMapper(
 
         return productsEntity
 
+    }
+
+    private fun formatPrice(regularPrice: String): String {
+        return regularPrice.replace(
+            "R$", ""
+        ).replace(",", ".").trim()
     }
 
     override fun reverseMap(input: List<ProductEntity>): List<ProductNetwork> {

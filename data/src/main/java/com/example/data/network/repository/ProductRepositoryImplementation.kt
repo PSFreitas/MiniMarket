@@ -8,8 +8,8 @@ import com.example.domain.entities.ProductEntity
 import com.example.domain.repository.ProductRepository
 
 class ProductRepositoryImplementation(
-    private val productApi: ProductService,
-    private val productMapper: ProductListMapper = ProductListMapper(SizeListMapper())
+    private val productApi: ProductService = ProductService.create(),
+    private val productListMapper: ProductListMapper = ProductListMapper(SizeListMapper())
 
 ) : ProductRepository {
 
@@ -17,7 +17,7 @@ class ProductRepositoryImplementation(
         val response = productApi.getAllProducts()
 
         return if (response.isSuccessful) {
-            ResultData.Success(productMapper.map(response.body()!!.products))
+            ResultData.Success(productListMapper.map(response.body()!!.products))
         } else {
             ResultData.Error(Exception())
         }
