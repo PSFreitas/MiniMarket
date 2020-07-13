@@ -1,7 +1,8 @@
 package com.example.domain.repository
 
+import com.example.domain.ResultData
 import com.example.domain.entities.ProductEntity
 
 interface ProductRepository {
-    fun getAllProducts(): List<ProductEntity>
+    suspend fun getAllProducts(): ResultData<List<ProductEntity>>
 }

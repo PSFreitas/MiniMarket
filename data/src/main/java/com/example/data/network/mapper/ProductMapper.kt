@@ -5,7 +5,7 @@ import com.example.domain.entities.ProductEntity
 import java.math.BigDecimal
 
 class ProductMapper(
-    val sizeMapper: SizeMapper
+    val sizeMapper: SizeListMapper
 ) : Mapper<ProductNetwork, ProductEntity> {
 
     override fun map(input: ProductNetwork): ProductEntity {
