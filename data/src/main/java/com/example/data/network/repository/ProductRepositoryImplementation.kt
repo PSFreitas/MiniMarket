@@ -14,11 +14,14 @@ class ProductRepositoryImplementation(
 ) : ProductRepository {
 
     override suspend fun getAllProducts(): ResultData<List<ProductEntity>> {
+        val response = productApi.getAllProducts()
 
-        return when (val response = productApi.getAllProducts()) {
-            is ResultData.Success -> ResultData.Success(productMapper.map(response.data.body()!!.products))
-            is ResultData.Error -> ResultData.Error(Exception())
+        return if (response.isSuccessful) {
+            ResultData.Success(productMapper.map(response.body()!!.products))
+        } else {
+            ResultData.Error(Exception())
         }
+
 
     }
 
