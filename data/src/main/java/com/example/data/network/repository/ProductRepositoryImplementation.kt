@@ -13,22 +13,7 @@ class ProductRepositoryImplementation(
 ) : ProductRepository {
 
     override fun getAllProducts(): List<ProductEntity> {
-        val response = productApi.getAllProducts()
-        val productEntities = mutableListOf<ProductEntity>()
 
-        if (response.isSuccessful) {
-            val productsNetwork = response.body()?.products
-
-            if (productsNetwork != null) {
-                for (product in productsNetwork) {
-                    productEntities.add(
-                        productMapper.map(product)
-                    )
-                }
-            }
-        }
-        
-        return productEntities
     }
 
 }
