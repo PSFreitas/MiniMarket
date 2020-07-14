@@ -3,6 +3,7 @@ package com.minimarket.adapter
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.minimarket.R
@@ -65,8 +66,8 @@ class ProductAdapter(
                 binding.progressBarProductImage.visibility = View.GONE
             }
 
-            binding.constraintLayoutProductItem.setOnClickListener {
-                onProductClickListener?.onProductClick(product)
+            binding.imageViewProductImage.setOnClickListener {
+                onProductClickListener?.onProductClick(product, it as ImageView)
             }
 
         }

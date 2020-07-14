@@ -1,10 +1,13 @@
 package com.minimarket.activity
 
 
+import android.app.ActivityOptions
 import android.content.Intent
 import android.os.Bundle
+import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
+import androidx.core.view.ViewCompat
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -53,11 +56,20 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun setupAdapter() {
+
         productAdapter.onProductClickListener = object : OnProductClickListener {
-            override fun onProductClick(product: ProductViewEntity) {
+            override fun onProductClick(product: ProductViewEntity, imageView: ImageView) {
                 val intent = Intent(this@MainActivity, ProductDetailActivity::class.java)
                 intent.putExtra("SELECTED_PRODUCT", product)
-                startActivity(intent)
+
+                val options = ActivityOptions
+                    .makeSceneTransitionAnimation(
+                        this@MainActivity,
+                        imageView,
+                        ViewCompat.getTransitionName(imageView  )
+                    )
+                startActivity(intent, options.toBundle())
+
             }
         }
     }

@@ -4,7 +4,9 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.databinding.BindingAdapter
 import com.minimarket.R
+import com.squareup.picasso.Callback
 import com.squareup.picasso.Picasso
+import java.lang.Exception
 import java.math.BigDecimal
 import java.text.NumberFormat
 import java.util.*
@@ -27,7 +29,16 @@ class BindingAdapters {
                     .load(path)
                     .placeholder(android.R.color.white)
                     .error(R.color.cardview_dark_background)
-                    .into(imageView)
+                    .into(imageView, object : Callback {
+                        override fun onSuccess() {
+                            TODO("Not yet implemented")
+                        }
+
+                        override fun onError(e: Exception?) {
+                            TODO("Not yet implemented")
+                        }
+
+                    })
         }
     }
 }
