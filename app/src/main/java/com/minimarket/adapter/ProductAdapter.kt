@@ -55,6 +55,8 @@ class ProductAdapter(
                         }
 
                     })
+            } else {
+                binding.progressBarProductImage.visibility = View.GONE
             }
 
         }

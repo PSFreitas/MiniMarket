@@ -9,6 +9,7 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.PagerSnapHelper
 import androidx.recyclerview.widget.RecyclerView
 import com.minimarket.R
 import com.minimarket.adapter.ProductAdapter
@@ -41,10 +42,14 @@ class MainActivity : AppCompatActivity() {
             it.lifecycleOwner = this
         }
 
-
+        fetchProductList()
         setupObservable()
         setupRecyclerView()
 
+    }
+
+    private fun fetchProductList() {
+        productViewModel.getAllProducts()
     }
 
     private fun setupRecyclerView() {
@@ -53,6 +58,9 @@ class MainActivity : AppCompatActivity() {
             this@MainActivity,
             RecyclerView.HORIZONTAL
         )
+
+        val pageSnapHelper = PagerSnapHelper()
+        pageSnapHelper.attachToRecyclerView(recyclerView_products)
 
         ContextCompat.getDrawable(this@MainActivity, R.drawable.product_decorator)?.let {
             itemDecoration.setDrawable(
@@ -70,6 +78,8 @@ class MainActivity : AppCompatActivity() {
 
             addItemDecoration(itemDecoration)
         }
+
+
     }
 
     private fun setupObservable() {
@@ -82,11 +92,4 @@ class MainActivity : AppCompatActivity() {
             }
         )
     }
-
-    override fun onStart() {
-        super.onStart()
-        productViewModel.getAllProducts()
-    }
-
-
 }
