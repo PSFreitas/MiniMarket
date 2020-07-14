@@ -21,12 +21,13 @@ class BindingAdapters {
         @JvmStatic
         @BindingAdapter("setImage")
         fun setImage(imageView: ImageView, path: String) {
-            Picasso
-                .get()
-                .load(path)
-                .placeholder(android.R.color.white)
-                .error(R.color.cardview_dark_background)
-                .into(imageView)
+            if (path.isNotBlank() && path.isNotEmpty())
+                Picasso
+                    .get()
+                    .load(path)
+                    .placeholder(android.R.color.white)
+                    .error(R.color.cardview_dark_background)
+                    .into(imageView)
         }
     }
 }
