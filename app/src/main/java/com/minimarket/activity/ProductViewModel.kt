@@ -4,9 +4,9 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.data.network.repository.ProductRepositoryImplementation
-import com.example.domain.ResultData
-import com.example.domain.entities.ProductEntity
+import com.minimarket.data.network.repository.ProductRepositoryImplementation
+import com.minimarket.domain.ResultData
+import com.minimarket.domain.entities.ProductEntity
 import kotlinx.coroutines.launch
 
 class ProductViewModel(
