@@ -1,12 +1,15 @@
 package com.minimarket.adapter
 
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.minimarket.R
 import com.minimarket.databinding.ProductItemBinding
 import com.minimarket.domain.entities.ProductEntity
+import com.squareup.picasso.Callback
+import com.squareup.picasso.Picasso
 
 class ProductAdapter(
     var productList: MutableList<ProductEntity>
@@ -26,10 +29,35 @@ class ProductAdapter(
     override fun getItemCount(): Int = productList.size
 
     override fun onBindViewHolder(holder: ProductViewHolder, position: Int) {
-        holder.binding.productItem = productList[position]
+        holder.bind(productList[position])
 
     }
 
-    class ProductViewHolder(var binding: ProductItemBinding) : RecyclerView.ViewHolder(binding.root)
+    class ProductViewHolder(var binding: ProductItemBinding) :
+        RecyclerView.ViewHolder(binding.root) {
+
+        fun bind(product: ProductEntity) {
+            binding.productItem = product
+
+            if (product.image.isNotEmpty()) {
+                Picasso
+                    .get()
+                    .load(product.image)
+                    .placeholder(android.R.color.white)
+                    .error(R.color.cardview_dark_background)
+                    .into(binding.imageViewProductImage, object : Callback {
+                        override fun onSuccess() {
+                            binding.progressBarProductImage.visibility = View.GONE
+                        }
+
+                        override fun onError(e: Exception?) {
+                            TODO("Not yet implemented")
+                        }
+
+                    })
+            }
+
+        }
+    }
 
 }

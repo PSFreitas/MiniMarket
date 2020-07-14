@@ -61,4 +61,7 @@ dependencies {
     //DataBinding Lib
     kapt "com.android.databinding:compiler:3.2.1"
 
+    //Material Lib
+    implementation 'com.google.android.material:material:1.1.0'
+
 }
