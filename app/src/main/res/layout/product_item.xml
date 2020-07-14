@@ -57,10 +57,10 @@
 
             <TextView
                     android:id="@+id/textView_product_price"
-                    android:text="@{productItem.actualPrice}"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_margin="16dp"
+                    android:text="@{productItem.actualPrice}"
                     android:textColor="@android:color/white"
                     android:textSize="24sp"
                     app:layout_constraintBottom_toBottomOf="@id/button_buy_product"
@@ -70,12 +70,12 @@
 
             <com.google.android.material.button.MaterialButton
                     android:id="@+id/button_buy_product"
+                    style="@style/CartButtonStyle"
                     android:layout_width="60dp"
                     android:layout_height="60dp"
                     android:layout_margin="16dp"
-                    android:backgroundTint="@android:color/white"
                     app:cornerRadius="4dp"
-                    app:icon="@drawable/ic_shopping_cart"
+                    app:icon="@drawable/ic_add_shopping_cart_30"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="1"
