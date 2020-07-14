@@ -31,4 +31,17 @@
         <item name="backgroundTint">@android:color/white</item>
     </style>
 
+    <style name="CustomCardViewStyle" parent="@style/Widget.MaterialComponents.CardView">
+        <item name="shapeAppearanceOverlay">@style/CardViewTopRadius</item>
+        <item name="backgroundTint">@android:color/white</item>
+    </style>
+
+    <style name="CardViewTopRadius">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSizeTopRight">12dp</item>
+        <item name="cornerSizeTopLeft">12dp</item>
+        <item name="cornerSizeBottomRight">0dp</item>
+        <item name="cornerSizeBottomLeft">0dp</item>
+    </style>
+
 </resources>

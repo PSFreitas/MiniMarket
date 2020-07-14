@@ -8,30 +8,16 @@
                 type="com.minimarket.entity.SizeViewEntity" />
     </data>
 
-    <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    <com.google.android.material.button.MaterialButton xmlns:android="http://schemas.android.com/apk/res/android"
             xmlns:app="http://schemas.android.com/apk/res-auto"
             xmlns:tools="http://schemas.android.com/tools"
             android:layout_width="55dp"
             android:layout_height="55dp"
             android:backgroundTint="@android:color/white"
-            app:cardCornerRadius="4dp">
+            android:text="@{productSize.size}"
+            android:textColor="@android:color/black"
+            app:cornerRadius="4dp"
+            tools:text="P" />
 
-
-        <TextView
-                android:id="@+id/textView_product_size"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:gravity="center"
-                android:text="@{productSize.size}"
-                android:textColor="@android:color/black"
-                android:textSize="24sp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                tools:text="P" />
-
-
-    </androidx.cardview.widget.CardView>
 
 </layout>
