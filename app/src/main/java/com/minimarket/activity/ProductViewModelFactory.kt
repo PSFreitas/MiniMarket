@@ -2,7 +2,7 @@ package com.minimarket.activity
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.example.data.network.repository.ProductRepositoryImplementation
+import com.minimarket.data.network.repository.ProductRepositoryImplementation
 
 class ProductViewModelFactory(
     private val productRepository: ProductRepositoryImplementation
