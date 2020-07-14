@@ -3,13 +3,16 @@ package com.minimarket.activity
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.minimarket.R
-import com.minimarket.activity.adapter.ProductAdapter
+import com.minimarket.adapter.ProductAdapter
 import com.minimarket.data.network.repository.ProductRepositoryImplementation
+import com.minimarket.databinding.ActivityMainBinding
+import com.minimarket.valuableobject.Status
 import kotlinx.android.synthetic.main.activity_main.*
 
 
@@ -27,7 +30,15 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+
+        DataBindingUtil.setContentView<ActivityMainBinding>(
+            this,
+            R.layout.activity_main
+        ).let {
+            it.viewModel = productViewModel
+            it.lifecycleOwner = this
+        }
+
 
         setupObservable()
         setupRecyclerView()
@@ -49,9 +60,8 @@ class MainActivity : AppCompatActivity() {
         productViewModel.productList.observe(
             this,
             Observer {
-                if (it != null) {
-                    productAdapter.productList.addAll(it)
-                }
+                if(it.status == Status.SUCCESS)
+                    productAdapter.productList.addAll(it.data!!)
                 productAdapter.notifyDataSetChanged()
             }
         )

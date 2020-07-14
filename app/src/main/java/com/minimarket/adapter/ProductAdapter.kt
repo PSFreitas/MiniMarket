@@ -1,4 +1,4 @@
-package com.minimarket.activity.adapter
+package com.minimarket.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
