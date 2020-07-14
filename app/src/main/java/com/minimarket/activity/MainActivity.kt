@@ -3,6 +3,7 @@ package com.minimarket.activity
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.example.data.network.repository.ProductRepositoryImplementation
 import com.minimarket.R
@@ -22,6 +23,19 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        setupObservable()
+
+    }
+
+    private fun setupObservable() {
+        productViewModel.productList.observe(
+            this,
+            Observer {
+                if (it != null) {
+
+                }
+            }
+        )
     }
 
     override fun onResume() {
