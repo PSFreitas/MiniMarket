@@ -1,6 +1,7 @@
 package com.minimarket.activity
 
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
@@ -12,9 +13,11 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.PagerSnapHelper
 import androidx.recyclerview.widget.RecyclerView
 import com.minimarket.R
+import com.minimarket.`interface`.OnProductClickListener
 import com.minimarket.adapter.ProductAdapter
 import com.minimarket.data.network.repository.ProductRepositoryImplementation
 import com.minimarket.databinding.ActivityMainBinding
+import com.minimarket.domain.entities.ProductEntity
 import com.minimarket.valuableobject.Status
 import kotlinx.android.synthetic.main.activity_main.*
 
@@ -44,8 +47,20 @@ class MainActivity : AppCompatActivity() {
 
         fetchProductList()
         setupObservable()
+        setupAdapter()
         setupRecyclerView()
 
+    }
+
+    private fun setupAdapter() {
+        productAdapter.onProductClickListener = object : OnProductClickListener {
+            override fun onProductClick(product: ProductEntity) {
+                startActivity(
+                    Intent(this@MainActivity, ProductDetailActivity::class.java)
+                )
+            }
+
+        }
     }
 
     private fun fetchProductList() {
