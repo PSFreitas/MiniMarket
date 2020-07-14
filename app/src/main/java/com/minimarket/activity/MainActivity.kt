@@ -3,9 +3,11 @@ package com.minimarket.activity
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.minimarket.R
@@ -46,13 +48,27 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun setupRecyclerView() {
+
+        val itemDecoration = DividerItemDecoration(
+            this@MainActivity,
+            RecyclerView.HORIZONTAL
+        )
+
+        ContextCompat.getDrawable(this@MainActivity, R.drawable.product_decorator)?.let {
+            itemDecoration.setDrawable(
+                it
+            )
+        }
+
         recyclerView_products.apply {
             layoutManager = LinearLayoutManager(
                 this@MainActivity,
-                RecyclerView.VERTICAL,
+                RecyclerView.HORIZONTAL,
                 false
             )
             adapter = productAdapter
+
+            addItemDecoration(itemDecoration)
         }
     }
 
@@ -60,7 +76,7 @@ class MainActivity : AppCompatActivity() {
         productViewModel.productList.observe(
             this,
             Observer {
-                if(it.status == Status.SUCCESS)
+                if (it.status == Status.SUCCESS)
                     productAdapter.productList.addAll(it.data!!)
                 productAdapter.notifyDataSetChanged()
             }

@@ -18,14 +18,33 @@
     <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:background="@android:color/white"
             tools:context=".activity.MainActivity">
+
+        <TextView
+                android:id="@+id/textView_store_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="32dp"
+                android:text="Uma Loja ai"
+                android:textAllCaps="true"
+                android:textColor="@android:color/black"
+                android:textSize="36sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
         <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recyclerView_products"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                tools:listitem="@layout/product_item" />
-
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="32dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/textView_store_name"
+                tools:itemCount="1"
+                tools:listitem="@layout/product_item"
+                tools:orientation="horizontal" />
 
         <ProgressBar
                 android:layout_width="wrap_content"
