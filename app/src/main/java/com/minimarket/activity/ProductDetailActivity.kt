@@ -36,8 +36,18 @@ class ProductDetailActivity : AppCompatActivity() {
         ).let {
             it.viewModel = productDetailViewModel
         }
+
+        setupToolbar()
+
         retrieveProduct()
 
+    }
+
+    private fun setupToolbar() {
+
+        imageButton_back_product_detail.setOnClickListener() {
+            onBackPressed()
+        }
     }
 
     override fun onResume() {

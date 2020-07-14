@@ -20,7 +20,8 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".activity.ProductDetailActivity"/>
+        <activity android:name=".activity.ProductDetailActivity"
+                android:theme="@style/AppTheme"/>
     </application>
 
 </manifest>
