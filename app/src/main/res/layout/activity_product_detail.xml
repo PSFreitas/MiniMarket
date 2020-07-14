@@ -16,7 +16,6 @@
             android:background="@android:color/black">
 
         <ImageView
-                setImage=" @{viewModel.productViewEntity.image}"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:scaleType="centerCrop"
@@ -24,7 +23,8 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                tools:src="@tools:sample/avatars" />
+                tools:src="@tools:sample/avatars"
+                setImage="@{viewModel.productViewEntity.image}"/>
 
 
         <com.google.android.material.button.MaterialButton
@@ -79,6 +79,7 @@
 
 
             <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recyclerView_size_product"
                     android:layout_width="0dp"
                     android:layout_height="60dp"
                     android:layout_marginTop="18dp"

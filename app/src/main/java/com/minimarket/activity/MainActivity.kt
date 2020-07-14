@@ -73,14 +73,15 @@ class MainActivity : AppCompatActivity() {
             RecyclerView.HORIZONTAL
         )
 
-        val pageSnapHelper = PagerSnapHelper()
-        pageSnapHelper.attachToRecyclerView(recyclerView_products)
-
         ContextCompat.getDrawable(this@MainActivity, R.drawable.product_decorator)?.let {
             itemDecoration.setDrawable(
                 it
             )
         }
+        val pageSnapHelper = PagerSnapHelper()
+        pageSnapHelper.attachToRecyclerView(recyclerView_products)
+
+
 
         recyclerView_products.apply {
             layoutManager = LinearLayoutManager(
