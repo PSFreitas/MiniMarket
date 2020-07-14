@@ -7,7 +7,7 @@
 
         <variable
                 name="productItem"
-                type="com.minimarket.domain.entities.ProductEntity" />
+                type="com.minimarket.entity.ProductViewEntity" />
 
     </data>
 
@@ -57,7 +57,7 @@
 
             <TextView
                     android:id="@+id/textView_product_price"
-                    formatPrice="@{productItem.actualPrice}"
+                    android:text="@{productItem.actualPrice}"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_margin="16dp"

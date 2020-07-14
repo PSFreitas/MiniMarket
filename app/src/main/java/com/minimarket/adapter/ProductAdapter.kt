@@ -8,12 +8,12 @@ import androidx.recyclerview.widget.RecyclerView
 import com.minimarket.R
 import com.minimarket.`interface`.OnProductClickListener
 import com.minimarket.databinding.ProductItemBinding
-import com.minimarket.domain.entities.ProductEntity
+import com.minimarket.entity.ProductViewEntity
 import com.squareup.picasso.Callback
 import com.squareup.picasso.Picasso
 
 class ProductAdapter(
-    var productList: MutableList<ProductEntity>
+    var productList: MutableList<ProductViewEntity>
 ) : RecyclerView.Adapter<ProductAdapter.ProductViewHolder>() {
 
     var onProductClickListener: OnProductClickListener? = null
@@ -40,7 +40,7 @@ class ProductAdapter(
         RecyclerView.ViewHolder(binding.root) {
 
         fun bind(
-            product: ProductEntity,
+            product: ProductViewEntity,
             onProductClickListener: OnProductClickListener?
         ) {
             binding.productItem = product
@@ -57,7 +57,7 @@ class ProductAdapter(
                         }
 
                         override fun onError(e: Exception?) {
-                            TODO("Not yet implemented")
+                            binding.progressBarProductImage.visibility = View.GONE
                         }
 
                     })

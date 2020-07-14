@@ -17,7 +17,7 @@ import com.minimarket.`interface`.OnProductClickListener
 import com.minimarket.adapter.ProductAdapter
 import com.minimarket.data.network.repository.ProductRepositoryImplementation
 import com.minimarket.databinding.ActivityMainBinding
-import com.minimarket.domain.entities.ProductEntity
+import com.minimarket.entity.ProductViewEntity
 import com.minimarket.valuableobject.Status
 import kotlinx.android.synthetic.main.activity_main.*
 
@@ -54,12 +54,11 @@ class MainActivity : AppCompatActivity() {
 
     private fun setupAdapter() {
         productAdapter.onProductClickListener = object : OnProductClickListener {
-            override fun onProductClick(product: ProductEntity) {
-                startActivity(
-                    Intent(this@MainActivity, ProductDetailActivity::class.java)
-                )
+            override fun onProductClick(product: ProductViewEntity) {
+                val intent = Intent(this@MainActivity, ProductDetailActivity::class.java)
+                intent.putExtra("SELECTED_PRODUCT", product)
+                startActivity(intent)
             }
-
         }
     }
 
