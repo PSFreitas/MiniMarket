@@ -13,6 +13,8 @@ import com.minimarket.R
 import com.minimarket.adapter.SizeAdapter
 import com.minimarket.databinding.ActivityProductDetailBinding
 import com.minimarket.entity.ProductViewEntity
+import com.squareup.picasso.Callback
+import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.activity_product_detail.*
 
 class ProductDetailActivity : AppCompatActivity() {
@@ -40,7 +42,31 @@ class ProductDetailActivity : AppCompatActivity() {
         setupToolbar()
 
         retrieveProduct()
+        loadImage()
 
+    }
+
+    private fun loadImage() {
+
+
+        if (productDetailViewModel.productViewEntity.value!!.image.isNotBlank() &&
+            productDetailViewModel.productViewEntity.value!!.image.isNotEmpty()
+        )
+            Picasso
+                .get()
+                .load(productDetailViewModel.productViewEntity.value!!.image)
+                .placeholder(android.R.color.white)
+                .error(android.R.color.white)
+                .into(imageView_product_detail_image, object : Callback {
+                    override fun onSuccess() {
+                        startPostponedEnterTransition()
+                    }
+
+                    override fun onError(e: Exception?) {
+                        startPostponedEnterTransition()
+                    }
+
+                })
     }
 
     private fun setupToolbar() {
