@@ -67,7 +67,11 @@ class ProductAdapter(
             }
 
             binding.imageViewProductImage.setOnClickListener {
-                onProductClickListener?.onProductClick(product, it as ImageView)
+                onProductClickListener?.onProductClick(
+                    product,
+                    it as ImageView,
+                    binding.buttonBuyProduct as View
+                )
             }
 
         }

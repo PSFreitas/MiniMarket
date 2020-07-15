@@ -70,10 +70,15 @@ class ProductDetailActivity : AppCompatActivity() {
     }
 
     private fun setupToolbar() {
+        setSupportActionBar(toolbar_product_detail)
 
-        imageButton_back_product_detail.setOnClickListener() {
+        supportActionBar?.setDisplayShowHomeEnabled(true)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+
+        toolbar_product_detail.setNavigationOnClickListener {
             onBackPressed()
         }
+
     }
 
     override fun onResume() {

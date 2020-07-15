@@ -4,6 +4,7 @@ package com.minimarket.activity
 import android.app.ActivityOptions
 import android.content.Intent
 import android.os.Bundle
+import android.view.View
 import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
@@ -23,7 +24,7 @@ import com.minimarket.databinding.ActivityMainBinding
 import com.minimarket.entity.ProductViewEntity
 import com.minimarket.valuableobject.Status
 import kotlinx.android.synthetic.main.activity_main.*
-
+import android.util.Pair as UtilPair
 
 class MainActivity : AppCompatActivity() {
 
@@ -52,21 +53,35 @@ class MainActivity : AppCompatActivity() {
         setupObservable()
         setupAdapter()
         setupRecyclerView()
+        setupToolbar()
+    }
 
+    private fun setupToolbar() {
+        setSupportActionBar(toolbar_product_list)
     }
 
     private fun setupAdapter() {
 
         productAdapter.onProductClickListener = object : OnProductClickListener {
-            override fun onProductClick(product: ProductViewEntity, imageView: ImageView) {
+            override fun onProductClick(
+                product: ProductViewEntity,
+                imageView: ImageView,
+                addCartView: View
+            ) {
                 val intent = Intent(this@MainActivity, ProductDetailActivity::class.java)
                 intent.putExtra("SELECTED_PRODUCT", product)
 
                 val options = ActivityOptions
                     .makeSceneTransitionAnimation(
                         this@MainActivity,
-                        imageView,
-                        ViewCompat.getTransitionName(imageView  )
+                        UtilPair.create<View, String>(
+                            imageView,
+                            ViewCompat.getTransitionName(imageView)
+                        ),
+                        UtilPair.create<View, String>(
+                            addCartView,
+                            ViewCompat.getTransitionName(addCartView)
+                        )
                     )
                 startActivity(intent, options.toBundle())
 

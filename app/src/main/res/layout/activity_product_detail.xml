@@ -16,6 +16,15 @@
             android:background="@android:color/white">
 
 
+        <androidx.appcompat.widget.Toolbar
+                android:id="@+id/toolbar_product_detail"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:navigationIcon="@drawable/ic_arrow_left_24"/>
+
         <ImageView
                 android:id="@+id/imageView_product_detail_image"
                 android:layout_width="match_parent"
@@ -26,7 +35,7 @@
                 app:layout_constraintBottom_toTopOf="@id/constraintLayout_product_detail_content"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/toolbar_product_detail"
                 tools:src="@tools:sample/avatars" />
 
 
@@ -41,23 +50,10 @@
                 app:layout_constraintTop_toTopOf="@id/textView_product_detail_name" />
 
 
-        <ImageButton
-                android:id="@+id/imageButton_back_product_detail"
-                android:layout_width="45dp"
-                android:layout_height="45dp"
-                android:layout_margin="18dp"
-                android:background="@android:color/transparent"
-                android:scaleType="centerCrop"
-                android:src="@drawable/ic_arrow_left_24"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-
         <com.google.android.material.button.MaterialButton
                 android:id="@+id/button_buy_product_detail"
                 style="@style/CartButtonStyle"
+                android:transitionName="addToCardButton"
                 android:layout_width="72dp"
                 android:layout_height="72dp"
                 android:layout_margin="24dp"
