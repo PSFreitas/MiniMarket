@@ -50,8 +50,8 @@ class ProductAdapter(
                 Picasso
                     .get()
                     .load(product.image)
-                    .placeholder(android.R.color.white)
-                    .error(R.color.cardview_dark_background)
+                    .placeholder(R.color.white)
+                    .error(R.color.black)
                     .into(binding.imageViewProductImage, object : Callback {
                         override fun onSuccess() {
                             binding.progressBarProductImage.visibility = View.GONE
@@ -63,6 +63,11 @@ class ProductAdapter(
 
                     })
             } else {
+                Picasso
+                    .get()
+                    .load(R.color.black)
+                    .placeholder(R.color.white)
+                    .into(binding.imageViewProductImage)
                 binding.progressBarProductImage.visibility = View.GONE
             }
 
