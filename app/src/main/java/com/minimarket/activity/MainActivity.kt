@@ -1,9 +1,14 @@
 package com.minimarket.activity
 
 
+import android.app.ActivityOptions
+import android.content.Intent
 import android.os.Bundle
+import android.view.View
+import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
+import androidx.core.view.ViewCompat
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -12,12 +17,14 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.PagerSnapHelper
 import androidx.recyclerview.widget.RecyclerView
 import com.minimarket.R
+import com.minimarket.`interface`.OnProductClickListener
 import com.minimarket.adapter.ProductAdapter
 import com.minimarket.data.network.repository.ProductRepositoryImplementation
 import com.minimarket.databinding.ActivityMainBinding
+import com.minimarket.entity.ProductViewEntity
 import com.minimarket.valuableobject.Status
 import kotlinx.android.synthetic.main.activity_main.*
-
+import android.util.Pair as UtilPair
 
 class MainActivity : AppCompatActivity() {
 
@@ -44,8 +51,42 @@ class MainActivity : AppCompatActivity() {
 
         fetchProductList()
         setupObservable()
+        setupAdapter()
         setupRecyclerView()
+        setupToolbar()
+    }
 
+    private fun setupToolbar() {
+        setSupportActionBar(toolbar_product_list)
+    }
+
+    private fun setupAdapter() {
+
+        productAdapter.onProductClickListener = object : OnProductClickListener {
+            override fun onProductClick(
+                product: ProductViewEntity,
+                imageView: ImageView,
+                addCartView: View
+            ) {
+                val intent = Intent(this@MainActivity, ProductDetailActivity::class.java)
+                intent.putExtra("SELECTED_PRODUCT", product)
+
+                val options = ActivityOptions
+                    .makeSceneTransitionAnimation(
+                        this@MainActivity,
+                        UtilPair.create<View, String>(
+                            imageView,
+                            ViewCompat.getTransitionName(imageView)
+                        ),
+                        UtilPair.create<View, String>(
+                            addCartView,
+                            ViewCompat.getTransitionName(addCartView)
+                        )
+                    )
+                startActivity(intent, options.toBundle())
+
+            }
+        }
     }
 
     private fun fetchProductList() {
@@ -59,14 +100,15 @@ class MainActivity : AppCompatActivity() {
             RecyclerView.HORIZONTAL
         )
 
-        val pageSnapHelper = PagerSnapHelper()
-        pageSnapHelper.attachToRecyclerView(recyclerView_products)
-
         ContextCompat.getDrawable(this@MainActivity, R.drawable.product_decorator)?.let {
             itemDecoration.setDrawable(
                 it
             )
         }
+        val pageSnapHelper = PagerSnapHelper()
+        pageSnapHelper.attachToRecyclerView(recyclerView_products)
+
+
 
         recyclerView_products.apply {
             layoutManager = LinearLayoutManager(

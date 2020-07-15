@@ -10,7 +10,6 @@ import com.minimarket.domain.repository.ProductRepository
 class ProductRepositoryImplementation(
     private val productApi: ProductService = ProductService.create(),
     private val productListMapper: ProductListMapper = ProductListMapper(SizeListMapper())
-
 ) : ProductRepository {
 
     override suspend fun getAllProducts(): ResultData<List<ProductEntity>> {
@@ -21,7 +20,6 @@ class ProductRepositoryImplementation(
         } else {
             ResultData.Error(Exception())
         }
-
 
     }
 

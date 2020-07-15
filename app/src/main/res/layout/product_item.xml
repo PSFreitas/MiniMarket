@@ -7,7 +7,7 @@
 
         <variable
                 name="productItem"
-                type="com.minimarket.domain.entities.ProductEntity" />
+                type="com.minimarket.entity.ProductViewEntity" />
 
     </data>
 
@@ -16,6 +16,7 @@
             android:layout_height="400dp">
 
         <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/constraintLayout_product_item"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
@@ -25,6 +26,7 @@
                     android:layout_height="match_parent"
                     android:scaleType="centerCrop"
                     android:tint="#40000000"
+                    android:transitionName="productImage"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
                     tools:src="@tools:sample/backgrounds/scenic" />
@@ -56,10 +58,10 @@
 
             <TextView
                     android:id="@+id/textView_product_price"
-                    formatPrice="@{productItem.actualPrice}"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_margin="16dp"
+                    android:text="@{productItem.actualPrice}"
                     android:textColor="@android:color/white"
                     android:textSize="24sp"
                     app:layout_constraintBottom_toBottomOf="@id/button_buy_product"
@@ -69,12 +71,13 @@
 
             <com.google.android.material.button.MaterialButton
                     android:id="@+id/button_buy_product"
+                    style="@style/CartButtonStyle"
                     android:layout_width="60dp"
                     android:layout_height="60dp"
                     android:layout_margin="16dp"
-                    android:backgroundTint="@android:color/white"
+                    android:transitionName="addToCardButton"
                     app:cornerRadius="4dp"
-                    app:icon="@drawable/ic_shopping_cart"
+                    app:icon="@drawable/ic_add_shopping_cart_30"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="1"
