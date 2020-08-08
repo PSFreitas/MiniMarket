@@ -56,6 +56,11 @@ class MainActivity : AppCompatActivity() {
         setupAdapter()
         setupRecyclerView()
         setupToolbar()
+        setupCartCount()
+    }
+
+    private fun setupCartCount() {
+        productViewModel.setupCartCount()
     }
 
     private fun setupToolbar() {
@@ -93,6 +98,7 @@ class MainActivity : AppCompatActivity() {
         productAdapter.onBuyProductClickListener = object : OnBuyProductClickListener {
             override fun onBuyProductClickListener(product: ProductViewEntity) {
                 Toast.makeText(this@MainActivity, R.string.product_added, Toast.LENGTH_SHORT).show()
+                productViewModel.increaseCartCount()
             }
 
         }

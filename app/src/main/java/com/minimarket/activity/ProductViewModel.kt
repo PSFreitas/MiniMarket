@@ -21,6 +21,8 @@ class ProductViewModel(
     private val _productList = MutableLiveData<Resource<List<ProductViewEntity>>>()
     var productList: LiveData<Resource<List<ProductViewEntity>>> = _productList
 
+    var cartCount = MutableLiveData<Int>()
+
     fun getAllProducts() {
 
         _productList.value = Resource.loading()
@@ -38,5 +40,13 @@ class ProductViewModel(
             }
         }
 
+    }
+
+    fun setupCartCount() {
+        cartCount.value = 0
+    }
+
+    fun increaseCartCount() {
+        cartCount.value = cartCount.value?.plus(1)
     }
 }
