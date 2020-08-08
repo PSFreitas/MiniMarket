@@ -4,6 +4,10 @@ import com.minimarket.data.network.ProductNetwork
 import com.minimarket.domain.entities.ProductEntity
 import java.math.BigDecimal
 
+/**
+ * A mapper class used to convert a list of ProductNetwork to a list of ProductEntity
+ *
+ * */
 class ProductListMapper(
     private val sizeListMapper: SizeListMapper
 ) : Mapper<List<ProductNetwork>, List<ProductEntity>> {

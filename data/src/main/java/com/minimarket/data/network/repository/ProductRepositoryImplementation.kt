@@ -7,6 +7,9 @@ import com.minimarket.domain.ResultData
 import com.minimarket.domain.entities.ProductEntity
 import com.minimarket.domain.repository.ProductRepository
 
+/**
+ * A class that implement the ProductRepository interface methods
+ * */
 class ProductRepositoryImplementation(
     private val productApi: ProductService = ProductService.create(),
     private val productListMapper: ProductListMapper = ProductListMapper(SizeListMapper())

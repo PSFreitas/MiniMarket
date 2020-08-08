@@ -3,6 +3,9 @@ package com.minimarket.data.network.mapper
 import com.minimarket.data.network.SizeNetwork
 import com.minimarket.domain.entities.SizeEntity
 
+/**
+ * A mapper class user to convert a list of SizeNetwork to a list of SizeEntity
+ * */
 class SizeListMapper : Mapper<List<SizeNetwork>, List<SizeEntity>> {
 
     override fun map(input: List<SizeNetwork>): List<SizeEntity> {

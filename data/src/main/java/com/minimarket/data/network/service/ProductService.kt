@@ -7,6 +7,9 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.GET
 
+/**
+ * A interface that contains the methods related to Products.
+ * */
 interface ProductService {
 
     @GET("59b6a65a0f0000e90471257d")
