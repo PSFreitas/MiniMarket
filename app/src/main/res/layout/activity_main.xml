@@ -85,11 +85,11 @@
 
                 <TextView
                         android:id="@+id/textView_total_cart_value"
+                        formatPrice="@{viewModel.cartTotalPrice.toString()}"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="8dp"
                         android:fontFamily="@font/montserratregular"
-                        formatPrice="@{viewModel.cartTotalPrice.toString()}"
                         app:layout_constraintBottom_toBottomOf="@id/textView_total_cart_label"
                         app:layout_constraintStart_toEndOf="@id/textView_total_cart_label"
                         app:layout_constraintTop_toTopOf="@id/textView_total_cart_label"
@@ -108,11 +108,11 @@
 
                 <TextView
                         android:id="@+id/textView_cart_item_count"
+                        formatCartItemCount="@{viewModel.cartCount}"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:background="@drawable/circle_shape_24"
                         android:gravity="center"
-                        android:text="@{String.valueOf(viewModel.cartCount)}"
                         android:textAlignment="center"
                         android:textColor="@color/white"
                         app:layout_constraintBottom_toTopOf="@id/imageView_cart_icon"
