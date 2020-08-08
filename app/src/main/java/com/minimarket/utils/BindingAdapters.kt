@@ -6,7 +6,6 @@ import androidx.databinding.BindingAdapter
 import com.minimarket.R
 import com.squareup.picasso.Callback
 import com.squareup.picasso.Picasso
-import java.lang.Exception
 import java.math.BigDecimal
 import java.text.NumberFormat
 import java.util.*
@@ -15,13 +14,15 @@ class BindingAdapters {
     companion object {
         @JvmStatic
         @BindingAdapter("formatPrice")
-        fun formatPrice(textView: TextView, price: BigDecimal) {
-            textView.text = NumberFormat.getCurrencyInstance(Locale("pt", "BR")).format(price)
+        fun formatPrice(textView: TextView, price: String) {
+            val bigDecimal = BigDecimal(price)
+            val formattedPrice = NumberFormat.getCurrencyInstance(Locale("pt", "BR")).format(bigDecimal)
+            textView.text = formattedPrice.replace("R$","R$ ")
 
         }
 
         @JvmStatic
-        @BindingAdapter("setImage")
+        @BindingAdapter("setseImage")
         fun setImage(imageView: ImageView, path: String) {
             if (path.isNotBlank() && path.isNotEmpty())
                 Picasso

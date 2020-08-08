@@ -63,7 +63,7 @@
                     android:layout_height="wrap_content"
                     android:layout_margin="16dp"
                     android:fontFamily="@font/montserratregular"
-                    android:text='@{"R$ " + productItem.actualPrice}'
+                    formatPrice="@{productItem.actualPrice}"
                     android:textColor="@android:color/white"
                     android:textSize="24sp"
                     app:layout_constraintBottom_toBottomOf="@id/button_buy_product"

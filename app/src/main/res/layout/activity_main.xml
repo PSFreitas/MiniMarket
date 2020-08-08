@@ -89,7 +89,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginStart="8dp"
                         android:fontFamily="@font/montserratregular"
-                        android:text="@{viewModel.cartTotalPrice.toString()}"
+                        formatPrice="@{viewModel.cartTotalPrice.toString()}"
                         app:layout_constraintBottom_toBottomOf="@id/textView_total_cart_label"
                         app:layout_constraintStart_toEndOf="@id/textView_total_cart_label"
                         app:layout_constraintTop_toTopOf="@id/textView_total_cart_label"
