@@ -2,7 +2,10 @@ package com.minimarket.activity
 
 
 import android.app.ActivityOptions
+import android.content.Context
 import android.content.Intent
+import android.net.ConnectivityManager
+import android.net.NetworkInfo
 import android.os.Bundle
 import android.view.View
 import android.view.animation.Animation
@@ -29,6 +32,7 @@ import com.minimarket.entity.ProductViewEntity
 import com.minimarket.valuableobject.Status
 import kotlinx.android.synthetic.main.activity_main.*
 import android.util.Pair as UtilPair
+
 
 class MainActivity : AppCompatActivity() {
 
@@ -109,7 +113,14 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun fetchProductList() {
-        productViewModel.getAllProducts()
+        if (isNetworkAvailable())
+            productViewModel.getAllProducts()
+    }
+
+    private fun isNetworkAvailable(): Boolean {
+        val cm = this.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+        val activeNetwork: NetworkInfo? = cm.activeNetworkInfo
+        return activeNetwork?.isConnectedOrConnecting == true
     }
 
     private fun setupRecyclerView() {
@@ -147,9 +158,15 @@ class MainActivity : AppCompatActivity() {
         productViewModel.productList.observe(
             this,
             Observer {
-                if (it.status == Status.SUCCESS)
+                if (it.status == Status.SUCCESS) {
                     productAdapter.productList.addAll(it.data!!)
-                productAdapter.notifyDataSetChanged()
+                    productAdapter.notifyDataSetChanged()
+                }
+
+                if (it.status == Status.ERROR) {
+                    var a = 0
+                }
+
             }
         )
 
