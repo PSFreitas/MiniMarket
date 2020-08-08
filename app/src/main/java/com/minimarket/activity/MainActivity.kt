@@ -5,6 +5,8 @@ import android.app.ActivityOptions
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
+import android.view.animation.Animation
+import android.view.animation.AnimationUtils
 import android.widget.ImageView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -148,6 +150,18 @@ class MainActivity : AppCompatActivity() {
                 if (it.status == Status.SUCCESS)
                     productAdapter.productList.addAll(it.data!!)
                 productAdapter.notifyDataSetChanged()
+            }
+        )
+
+        productViewModel.cartCount.observe(
+            this,
+            Observer {
+                if (it != 0 && materialCardView_cart.visibility != View.VISIBLE) {
+                    val slideUp: Animation =
+                        AnimationUtils.loadAnimation(this, R.anim.slide_in_vertical)
+                    materialCardView_cart.visibility = View.VISIBLE
+                    materialCardView_cart.startAnimation(slideUp)
+                }
             }
         )
     }
