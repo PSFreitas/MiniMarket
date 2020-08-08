@@ -23,7 +23,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:navigationIcon="@drawable/ic_arrow_left_24"/>
+                app:navigationIcon="@drawable/ic_arrow_left_24" />
 
         <ImageView
                 android:id="@+id/imageView_product_detail_image"
@@ -49,21 +49,6 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="@id/textView_product_detail_name" />
 
-
-        <com.google.android.material.button.MaterialButton
-                android:id="@+id/button_buy_product_detail"
-                style="@style/CartButtonStyle"
-                android:transitionName="addToCardButton"
-                android:layout_width="72dp"
-                android:layout_height="72dp"
-                android:layout_margin="24dp"
-                app:cornerRadius="4dp"
-                app:icon="@drawable/ic_add_shopping_cart_30"
-                app:layout_constraintBottom_toTopOf="@id/constraintLayout_product_detail_content"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="@id/constraintLayout_product_detail_content" />
-
-
         <TextView
                 android:id="@+id/textView_product_detail_name"
                 android:layout_width="0dp"
@@ -71,8 +56,8 @@
                 android:layout_marginStart="16dp"
                 android:layout_marginEnd="120dp"
                 android:elevation="1dp"
-                android:paddingTop="10dp"
                 android:fontFamily="@font/montserratregular"
+                android:paddingTop="10dp"
                 android:text="@{viewModel.productViewEntity.name}"
                 android:textColor="@android:color/black"
                 app:layout_constraintBottom_toTopOf="@id/textView_product_price"
@@ -88,10 +73,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:elevation="1dp"
+                android:fontFamily="@font/montserratregular"
                 android:text="@{viewModel.productViewEntity.actualPrice}"
                 android:textColor="@android:color/black"
                 android:textSize="24sp"
-                android:fontFamily="@font/montserratregular"
                 app:layout_constraintBottom_toTopOf="@id/recyclerView_size_product"
                 app:layout_constraintStart_toStartOf="@id/textView_product_detail_name"
                 app:layout_constraintTop_toBottomOf="@id/textView_product_detail_name"
