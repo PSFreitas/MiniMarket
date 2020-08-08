@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">MiniMarket</string>
     <string name="product_added">Produto adicionado no carrinho</string>
+    <string name="cart_total_label">total</string>
 </resources>

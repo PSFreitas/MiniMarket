@@ -44,14 +44,83 @@
                 tools:orientation="horizontal" />
 
         <ProgressBar
-                android:layout_width="wrap_content"
+                style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:indeterminate="true"
                 android:visibility="@{viewModel.productList.status == Status.LOADING ? View.VISIBLE : View.GONE }"
+                app:layout_constraintBottom_toTopOf="@id/materialCardView_cart"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+
+        <com.google.android.material.card.MaterialCardView
+                android:id="@+id/materialCardView_cart"
+                style="@style/Widget.MaterialComponents.BottomSheet.Modal"
+                android:layout_width="match_parent"
+                android:layout_height="86dp"
+                app:cardBackgroundColor="#eee"
+                app:cardCornerRadius="0dp"
+                app:cardElevation="8dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintStart_toStartOf="parent">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                <TextView
+                        android:id="@+id/textView_total_cart_label"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:text="@string/cart_total_label"
+                        android:textAllCaps="true"
+                        android:textSize="12sp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                        android:id="@+id/textView_total_cart_value"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        app:layout_constraintBottom_toBottomOf="@id/textView_total_cart_label"
+                        app:layout_constraintStart_toEndOf="@id/textView_total_cart_label"
+                        app:layout_constraintTop_toTopOf="@id/textView_total_cart_label"
+                        tools:text="R$ 250.00" />
+
+                <ImageView
+                        android:id="@+id/imageView_cart_icon"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/ic_cart"
+                        app:layout_constraintBottom_toBottomOf="@id/textView_total_cart_value"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.9"
+                        app:layout_constraintStart_toEndOf="@id/textView_total_cart_value"
+                        app:layout_constraintTop_toTopOf="@id/textView_total_cart_value" />
+
+                <TextView
+                        android:id="@+id/textView_cart_item_count"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/circle_shape_24"
+                        android:gravity="center"
+                        android:textAlignment="center"
+                        android:textColor="@color/white"
+                        app:layout_constraintBottom_toTopOf="@id/imageView_cart_icon"
+                        app:layout_constraintEnd_toEndOf="@id/imageView_cart_icon"
+                        app:layout_constraintStart_toEndOf="@id/imageView_cart_icon"
+                        app:layout_constraintTop_toTopOf="@id/imageView_cart_icon"
+                        tools:text="15" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </com.google.android.material.card.MaterialCardView>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
+
 
 </layout>
