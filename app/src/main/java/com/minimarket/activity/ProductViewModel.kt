@@ -11,6 +11,7 @@ import com.minimarket.domain.ResultData
 import com.minimarket.entity.ProductViewEntity
 import com.minimarket.valuableobject.Resource
 import kotlinx.coroutines.launch
+import java.math.BigDecimal
 
 class ProductViewModel(
     private val productRepository: ProductRepositoryImplementation
@@ -22,6 +23,7 @@ class ProductViewModel(
     var productList: LiveData<Resource<List<ProductViewEntity>>> = _productList
 
     var cartCount = MutableLiveData<Int>()
+    var cartTotalPrice = MutableLiveData<BigDecimal>()
 
     fun getAllProducts() {
 
@@ -44,9 +46,14 @@ class ProductViewModel(
 
     fun setupCartCount() {
         cartCount.value = 0
+        cartTotalPrice.value = BigDecimal.ZERO
     }
 
     fun increaseCartCount() {
         cartCount.value = cartCount.value?.plus(1)
+    }
+
+    fun increaseCartTotalPrice(price: String) {
+        cartTotalPrice.value = cartTotalPrice.value?.add(BigDecimal(price))
     }
 }

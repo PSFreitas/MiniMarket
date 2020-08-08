@@ -99,6 +99,7 @@ class MainActivity : AppCompatActivity() {
             override fun onBuyProductClickListener(product: ProductViewEntity) {
                 Toast.makeText(this@MainActivity, R.string.product_added, Toast.LENGTH_SHORT).show()
                 productViewModel.increaseCartCount()
+                productViewModel.increaseCartTotalPrice(product.actualPrice)
             }
 
         }

@@ -32,7 +32,7 @@ class ProductViewEntityMapper(
 
 
     private fun formatPrice(price: BigDecimal): String {
-        return "R$ ${price.toString()}"
+        return price.toString()
     }
 
     override fun reverseMap(input: List<ProductViewEntity>): List<ProductEntity> {
