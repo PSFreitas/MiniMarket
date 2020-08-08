@@ -7,6 +7,7 @@ import android.widget.ImageView
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.minimarket.R
+import com.minimarket.`interface`.OnBuyProductClickListener
 import com.minimarket.`interface`.OnProductClickListener
 import com.minimarket.databinding.ProductItemBinding
 import com.minimarket.entity.ProductViewEntity
@@ -18,6 +19,7 @@ class ProductAdapter(
 ) : RecyclerView.Adapter<ProductAdapter.ProductViewHolder>() {
 
     var onProductClickListener: OnProductClickListener? = null
+    var onBuyProductClickListener: OnBuyProductClickListener? = null
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ProductViewHolder {
         val binding = DataBindingUtil.inflate<ProductItemBinding>(
@@ -33,7 +35,7 @@ class ProductAdapter(
     override fun getItemCount(): Int = productList.size
 
     override fun onBindViewHolder(holder: ProductViewHolder, position: Int) {
-        holder.bind(productList[position], onProductClickListener)
+        holder.bind(productList[position], onProductClickListener, onBuyProductClickListener)
 
     }
 
@@ -42,7 +44,8 @@ class ProductAdapter(
 
         fun bind(
             product: ProductViewEntity,
-            onProductClickListener: OnProductClickListener?
+            onProductClickListener: OnProductClickListener?,
+            onBuyProductClickListener: OnBuyProductClickListener?
         ) {
             binding.productItem = product
 
@@ -76,6 +79,12 @@ class ProductAdapter(
                     product,
                     it as ImageView,
                     binding.buttonBuyProduct as View
+                )
+            }
+
+            binding.buttonBuyProduct.setOnClickListener {
+                onBuyProductClickListener?.onBuyProductClickListener(
+                    product
                 )
             }
 

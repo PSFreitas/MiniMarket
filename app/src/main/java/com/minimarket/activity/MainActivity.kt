@@ -6,6 +6,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import android.widget.ImageView
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.core.view.ViewCompat
@@ -17,6 +18,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.PagerSnapHelper
 import androidx.recyclerview.widget.RecyclerView
 import com.minimarket.R
+import com.minimarket.`interface`.OnBuyProductClickListener
 import com.minimarket.`interface`.OnProductClickListener
 import com.minimarket.adapter.ProductAdapter
 import com.minimarket.data.network.repository.ProductRepositoryImplementation
@@ -87,6 +89,14 @@ class MainActivity : AppCompatActivity() {
 
             }
         }
+
+        productAdapter.onBuyProductClickListener = object : OnBuyProductClickListener {
+            override fun onBuyProductClickListener(product: ProductViewEntity) {
+                Toast.makeText(this@MainActivity, R.string.product_added, Toast.LENGTH_SHORT).show()
+            }
+
+        }
+
     }
 
     private fun fetchProductList() {
